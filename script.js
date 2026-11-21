@@ -80,7 +80,7 @@ function update() {
         snakeBody.push([foodX, foodY]);
         
 
-        score += 10;
+        score += 1;
         document.getElementById("score").innerText = "Score" + score;
         placeFood();
     }
