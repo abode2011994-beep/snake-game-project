@@ -83,7 +83,7 @@ function update() {
     for (let i = snakeBody.length - 1; i > 0; i--) {
         snakeBody[i] = snakeBody[i - 1];
         score += 10;
-        document.getElementById("score").InnerText  = "Score" + score;
+        document.getElementById("score").innerText  = "Score" + score;
     }
 
     if (snakeBody.length) {
