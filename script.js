@@ -3,6 +3,7 @@ let total_row = 17;
 let total_col = 17;
 let board;
 let context;
+let score = 0;
 
 let snakeX;
 let snakeY;
@@ -81,6 +82,8 @@ function update() {
     // Move snake body
     for (let i = snakeBody.length - 1; i > 0; i--) {
         snakeBody[i] = snakeBody[i - 1];
+        score += 10;
+        document.getElementById("score").InnerText  = "Score" + score;
     }
 
     if (snakeBody.length) {
