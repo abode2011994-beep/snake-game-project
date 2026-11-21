@@ -81,7 +81,7 @@ function update() {
         
 
         score += 1;
-        document.getElementById("score").innerText = "Score" + score;
+        document.getElementById("score").innerText = "Score: " + score;
         placeFood();
     }
 
