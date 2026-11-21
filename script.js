@@ -42,6 +42,8 @@ function resetGame() {
 
     snakeBody = [];
     gameOver = false;
+    score = 0;
+    document.getElementById("score").innerText = "Score: 0"
 
     placeFood();
 }
@@ -76,14 +78,17 @@ function update() {
     // Eat food
     if (snakeX == foodX && snakeY == foodY) {
         snakeBody.push([foodX, foodY]);
+        
+
+        score += 10;
+        document.getElementById("score").innerText = "Score" + score;
         placeFood();
     }
 
     // Move snake body
     for (let i = snakeBody.length - 1; i > 0; i--) {
         snakeBody[i] = snakeBody[i - 1];
-        score += 10;
-        document.getElementById("score").innerText  = "Score" + score;
+        
     }
 
     if (snakeBody.length) {
