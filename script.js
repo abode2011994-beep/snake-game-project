@@ -312,33 +312,30 @@ function showGameOver() {
 }
 
 //save players score
-function renderLeaderBoard() {
-    let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+function saveScore() {
+    let playerName = document.getElementById("playerName").value.trim();
 
-    let leaderboardList = document.getElementById("leaderboardList");
-
-    leaderboardList.innerHTML = "";
-
-    if (leaderboard.legth === 0) {
-        leaderboardList.innerHTML = "<li>No score yet!<li>";
-        return;
+    if (playerName === "") {
+        playerName = "Player";
     }
 
-    leaderboard.forEach(function(palyer) {
-        let listItem = document.createElement("li");
+    let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
 
-        listItem.textContent = player.name + "-" + player.score;
-
-        leaderboardList.appendChild(listItem);
+    leaderboard.push({
+        name: playerName, score: score
     });
 
-}
+    leaderboard.sort((a, b) => b.score - a.score);
+    leaderboard = leaderboard.slice(0, 10);
 
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+
+    renderLeaderBoard();
+}
 
 // display leaderboard
 function renderLeaderBoard() {
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
-    
 
 let leaderboardList = document.getElementById("leaderboardList");
 
