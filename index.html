@@ -10,8 +10,40 @@
 
 <body>
     <h1>Snake game </h1>
-    <p id="score">Score: 0</p>
-    <canvas id="board"></canvas>
+
+    <div id="menu">
+        <h2>Welcome!</h2>
+        <p>Choose your difficulty</p>
+
+        <button id="playButton">PLAY</button>
+
+        <div id="difficulty">
+            <h3>Select Difficulty</h3>
+            <button id="easyButton">Easy</button>
+            <button id="mediumButton">Medium</button>
+            <button id="hardButton">Hard</button>
+        </div>
+    </div>
+
+    <div id="gameContainer" style="display: none;">
+        
+        <canvas id="board"></canvas>
+
+        <p>Use arrow keys to move</p>
+
+        <div id="gameOverScreen" style="display: none;">
+
+            <h2>GAME OVER</h2>
+
+            <p>Final Score: <span id="finalScore">0</span></p>
+
+            <p>High Score: <span id="finalHighScore">0</span></p>
+
+            <button id="playAgainButton">PLAY AGAIN</button>
+
+            <button id="menuButton">MAIN MENU</button>
+        </div>
+    </div>
      <script src="script.js"></script>
 </body>
 </html>
