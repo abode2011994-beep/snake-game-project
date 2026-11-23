@@ -312,31 +312,26 @@ function showGameOver() {
 }
 
 //save players score
-function saveScore() {
-    let playerName = document.getElementById("playerName").ariaValueMax.trim();
-
-    if (playerName === "") {
-        playerName = "Player";
-    }
-
+function renderLeaderBoard() {
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
 
-    leaderboard.push({
-        name: playerName,
-        score: score
+    let leaderboardList = document.getElementById("leaderboardList");
+
+    leaderboardList.innerHTML = "";
+
+    if (leaderboard.legth === 0) {
+        leaderboardList.innerHTML = "<li>No score yet!<li>";
+        return;
+    }
+
+    leaderboard.forEach(function(palyer) {
+        let listItem = document.createElement("li");
+
+        listItem.textContent = player.name + "-" + player.score;
+
+        leaderboardList.appendChild(listItem);
     });
 
-    //sort score high to low
-    leaderboard.sort((a, b) => b.score - a.score);
-
-
-    // keep only 10
-    leaderboard = leaderboard.slice(0, 10);
-
-
-    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
-
-    renderLeaderBoard();
 }
 
 
@@ -361,4 +356,3 @@ function renderLeaderBoard() {
 
     leaderboardList.appendChild(listItem);
    });
-}
