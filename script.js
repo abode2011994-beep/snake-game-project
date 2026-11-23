@@ -55,10 +55,10 @@ window.onload = function () {
 
 //Swipe controls for mobile
 
-let touchStart  = 0;
+let touchStartX  = 0;
 let touchStartY = 0;
 
-board.addEventListener("touuchstart", function(e)  {
+board.addEventListener("touchstart", function(e)  {
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
     e.preventDefault();
