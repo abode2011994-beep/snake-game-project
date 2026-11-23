@@ -337,22 +337,22 @@ function renderLeaderBoard() {
 
 // display leaderboard
 function renderLeaderBoard() {
+    let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+    
 
-  let leaderboard =JSON.parse(localStorage.getItem("leaderboard")) || [];
+let leaderboardList = document.getElementById("leaderboardList");
 
-  let leaderboardList = document.getElementById("leaderboardList");
+leaderboardList.innerHTML = "";
+if (leaderboard.length === 0) {
+leaderboardList.innerHTML = "<li>No score yet!</li>";
+return;
+}
 
-  leaderboardList.innerHTML = "";
-
-  if (leaderboardList.length === 0 ) {
-    leaderboardList.innerHTML = "<li>No scores yet!</li>";
-    return;
-  }
-
-  leaderboardList.onbeforematch(function(player) {
+leaderboard.forEach(function(player) {
     let listItem = document.createElement("li");
 
-    listItem.textContent = player.name + "-" + player.score;
+    listItem.textContent = player.name + " - " + player.score;
 
     leaderboardList.appendChild(listItem);
-   });
+  });
+}
