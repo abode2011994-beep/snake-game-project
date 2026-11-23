@@ -26,6 +26,7 @@ let highScore = localStorage.getItem("highScore") || 0;
 
 window.onload = function () {
     board = document.getElementById("board");
+    renderLeaderBoard();
     board.height = total_row * blockSize;
     board.width = total_col * blockSize;
     context = board.getContext("2d");
@@ -72,7 +73,7 @@ board.addEventListener("touchend", function (e) {
     let diffX = e.changedTouches[0].clientX - touchStartX;
     let diffY = e.changedTouches[0].clientY - touchStartY;
 
-    //ignore tiny movements so taps don't count as swipes
+    //taps don't count as swipes
     if (Math.max(Math.abs(diffX), Math.abs(diffY)) < 30) return;
 
     if (Math.abs(diffX) > Math.abs(diffY)) {
@@ -235,6 +236,8 @@ function endGame() {
 
     gameOver = true;
     gameStarted = false;
+
+    saveScore();
     showGameOver();
 }
 
@@ -306,4 +309,56 @@ function showGameOver() {
 
     document.getElementById("finalScore").textContent = score;
     document.getElementById("finalHighScore").textContent = highScore;
+}
+
+//save players score
+function saveScore() {
+    let playerName = document.getElementById("playerName").ariaValueMax.trim();
+
+    if (playerName === "") {
+        playerName = "Player";
+    }
+
+    let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+    leaderboard.push({
+        name: playerName,
+        score: score
+    });
+
+    //sort score high to low
+    leaderboard.sort((a, b) => b.score - a.score);
+
+
+    // keep only 10
+    leaderboard = leaderboard.slice(0, 10);
+
+
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+
+    renderLeaderBoard();
+}
+
+
+// display leaderboard
+function renderLeaderBoard() {
+
+  let leaderboard =JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+  let leaderboardList = document.getElementById("leaderboardList");
+
+  leaderboardList.innerHTML = "";
+
+  if (leaderboardList.length === 0 ) {
+    leaderboardList.innerHTML = "<li>No scores yet!</li>";
+    return;
+  }
+
+  leaderboardList.onbeforematch(function(player) {
+    let listItem = document.createElement("li");
+
+    listItem.textContent = player.name + "-" + player.score;
+
+    leaderboardList.appendChild(listItem);
+   });
 }
