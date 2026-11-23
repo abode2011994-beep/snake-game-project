@@ -104,12 +104,12 @@ if (isPaused) {
 }
 
     // Background
-    context.fillStyle = "#10251b";
+    context.fillStyle = "#0c1525";
     context.fillRect(0, 0, board.width, board.height);
 
 
 //subtle grid
-context.strokeStyle = "#1c3b2b";
+context.strokeStyle = "#17233a";
 context.lineWidth = 1;
 
 for (let i = 0; i <= total_col; i++) {
