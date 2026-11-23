@@ -53,6 +53,36 @@ window.onload = function () {
 
     document.addEventListener("keyup", changeDirection);
 
+//Swipe controls for mobile
+
+let touchStart  = 0;
+let touchStartY = 0;
+
+board.addEventListener("touuchstart", function(e)  {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    e.preventDefault();
+}, {passive: false});
+
+board.addEventListener("touchmove", function (e) {
+    e.preventDefault();
+}, {passive: false});
+
+board.addEventListener("touchend", function (e) {
+    let diffX = e.changedTouches[0].clientX - touchStartX;
+    let diffY = e.changedTouches[0].clientY - touchStartY;
+
+    //ignore tiny movements so taps don't count as swipes
+    if (Math.max(Math.abs(diffX), Math.abs(diffY)) < 30) return;
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        changeDirection({ code: diffX > 0 ? "ArrowRight" : "ArrowLeft"});
+    } else {
+        changeDirection({ code: diffY > 0 ? "ArrowDown" : "ArrowUp"});
+    }
+    e.preventDefault();
+}, {passive: false});
+
     // Game loop 
     gameLoop = setInterval(update, 1000 / gameSpeed);
 
