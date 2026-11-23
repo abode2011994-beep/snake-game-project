@@ -83,6 +83,12 @@ board.addEventListener("touchend", function (e) {
     e.preventDefault();
 }, {passive: false});
 
+//pause button for mobile
+document.getElementById("pauseButton").addEventListener("click", function () {
+    changeDirection({ code: "KeyP"});
+});
+
+
     // Game loop 
     gameLoop = setInterval(update, 1000 / gameSpeed);
 
@@ -239,6 +245,7 @@ function changeDirection(e) {
     //pause
     if (e.code === "KeyP" && gameStarted && !gameOver) {
         isPaused = !isPaused;
+        document.getElementById("pauseButton").textContent = isPaused ? "RESUME" : "PAUSE";
         return;
     }
 
@@ -285,6 +292,8 @@ function startGame(speed) {
     document.getElementById("gameContainer").style.display = "block";
 
     isPaused = false;
+
+    document.getElementById("pauseButton").textContent = "PAUSE";
 
     
     gameStarted = true;
