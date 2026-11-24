@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Snake game </h1>
+    <h1>SNAKE GAME</h1>
 
     <div id="menu">
         <h2>Welcome!</h2>
@@ -39,13 +39,15 @@
             </ol>
 
         </div>
+        <button id="statsButton">STATISTICS</button>
+
     </div>
 
     <div id="gameContainer" style="display: none;">
         
         <canvas id="board"></canvas>
 
-        <p>Use arrow keys to move or wipe to move &middot; Press P to paused</p>
+        <p>Arrow keys   or wipe to move &middot; Press P to paused</p>
         
         <button id="pauseButton">PAUSE</button>
 
@@ -62,6 +64,33 @@
             <button id="menuButton">MAIN MENU</button>
         </div>
     </div>
+
+    <div id="statsScreen" style="display: none;">
+        <h2>STATISTICS</h2>
+
+        <div class="statBox">
+            <h3>Games PLayed</h3>
+            <p id="gamesPlayed">0</p>
+        </div>
+
+        <div class="statBox">
+            <h3>Best Score</h3>
+            <p id="bestScore">0</p>
+        </div>
+
+        <div class="statBox">
+            <h3>Average Score</h3>
+            <p id="averageScore">0</p>
+        </div>
+
+        <div class="statBox">
+            <h3>Total Food Eaten</h3>
+            <p id="totalFood">0</p>
+        </div>
+
+        <button id="backToMenuButton">BACK TO MENU</button>
+    </div>
+
      <script src="script.js"></script>
 </body>
 </html>
