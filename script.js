@@ -37,6 +37,19 @@ window.onload = function () {
 
     });
 
+//statistics button
+document.getElementById("statsButton").addEventListener("click", function() {
+    renderStatistics();
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("statsScreen").style.display = "block";
+});
+
+// back to menu
+document.getElementById("backToMenuButton").addEventListener("click", function() {
+    document.getElementById("statsScreen").style.display = "none";
+    document.getElementById("menu").style.display = "block";
+});
+
 // difficulty
     document.getElementById("easyButton").addEventListener("click", function () {
         startGame(5);
@@ -237,6 +250,7 @@ function endGame() {
     gameOver = true;
     gameStarted = false;
 
+    updateStatistics();
     saveScore();
     showGameOver();
 }
@@ -352,4 +366,36 @@ leaderboard.forEach(function(player) {
 
     leaderboardList.appendChild(listItem);
   });
+}
+
+// update game statistics
+function updateStatistics() {
+    let stats = JSON.parse(localStorage.getItem("gameStats")) || {};
+
+    stats.gamesPlayed = (stats.gamesPlayed || 0) + 1;
+    stats.totalScore = (stats.totalScore || 0) + score;
+    stats.totalFood = (stats.totalFood || 0) + score;
+    stats.bestScore = Math.max(stats.bestScore || 0, score);
+
+    localStorage.setItem("gameStats", JSON.stringify(stats));
+}
+
+
+//display stats
+function renderStatistics() {
+    let stats = JSON.parse(localStorage.getItem("gameStats")) || {
+        gamesPlayed: 0,
+        totalScore: 0,
+        totalFood: 0,
+        bestScore: 0,
+    };
+
+    let average = stats.gamesPlayed === 0  
+    ? 0
+    : (stats.totalScore / stats.gamesPlayed).toFixed(1);
+
+    document.getElementById("gamesPlayed").textContent = stats.gamesPlayed;
+    document.getElementById("bestScore").textContent = stats.bestScore;
+    document.getElementById("averageScore").textContent = average;
+    document.getElementById("totalFood").textContent = stats.totalFood;
 }
