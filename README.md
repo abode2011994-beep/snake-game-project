@@ -1,7 +1,7 @@
 # Snake Game 🐍
 
 ## About
-This is a classic Snake Game built using HTML, CSS and JavaScript.
+This is a classic Snake Game built using HTML, CSS and JavaScript. I always wanted to make a game , when I found out about hack club i had the chance to make it come true . I also wanted to flex to my friends yeahhh it didnt go so well
 
 ## How to Play
 - Use the arrow keys to control the snake.
