@@ -17,3 +17,7 @@ This is a classic Snake Game built using HTML, CSS and JavaScript.
 ## Play
 [Play the Snake Game](https://snake-game-bro.vercel.app/)
 I USED AI 30-40% 
+
+
+also i have added a system so people can play it an mobile by swiping on the screen 
+thanks for reading everyone
